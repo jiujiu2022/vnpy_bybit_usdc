@@ -437,7 +437,7 @@ class BybitRestApi(RestClient):
         if self.check_error("取消委托", data):
             error_code = data["retCode"]
             # 重复撤销委托单被拒推送
-            if error_code == 20001:
+            if error_code == 3100136:
                 order: OrderData= request.extra
                 order.status = Status.REJECTED
                 self.order_manager.on_order(order)
